@@ -24,11 +24,7 @@ enq a (Queue queue) =
 
 deq : Queue a -> Queue a
 deq (Queue queue) =
-    let
-        length =
-            List.length queue
-    in
-        Queue (List.take (length - 1) queue)
+    Queue (List.drop 1 queue)
 
 
 toList : Queue a -> List a
