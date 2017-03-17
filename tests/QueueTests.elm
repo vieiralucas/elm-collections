@@ -25,14 +25,14 @@ all =
             \() ->
                 Queue.empty
                     |> Queue.deq
-                    |> Expect.equal Queue.empty
+                    |> Expect.equal ( Nothing, Queue.empty )
         , test "deq eliminates first element" <|
             \() ->
                 Queue.empty
                     |> Queue.enq 1
                     |> Queue.enq 2
                     |> Queue.deq
-                    |> Expect.equal (Queue.empty |> Queue.enq 2)
+                    |> Expect.equal ( Just 1, (Queue.empty |> Queue.enq 2) )
         , test "toList of empty gives empty List" <|
             \() ->
                 Queue.empty

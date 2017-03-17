@@ -22,9 +22,9 @@ enq a (Queue queue) =
     Queue (List.append queue [ a ])
 
 
-deq : Queue a -> Queue a
+deq : Queue a -> ( Maybe a, Queue a )
 deq (Queue queue) =
-    Queue (List.drop 1 queue)
+    ( List.head queue, Queue (List.drop 1 queue) )
 
 
 toList : Queue a -> List a
