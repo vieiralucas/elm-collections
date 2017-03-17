@@ -1,4 +1,4 @@
-module Stack exposing (Stack, initialize, top, pop, push, toList)
+module Stack exposing (Stack, empty, top, pop, push, toList)
 
 import List
 
@@ -7,8 +7,8 @@ type Stack a
     = Stack (List a)
 
 
-initialize : Stack a
-initialize =
+empty : Stack a
+empty =
     Stack []
 
 

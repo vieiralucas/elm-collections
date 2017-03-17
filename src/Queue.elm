@@ -1,4 +1,4 @@
-module Queue exposing (Queue, initialize, first, enq, deq, toList)
+module Queue exposing (Queue, empty, first, enq, deq, toList)
 
 import List
 
@@ -7,8 +7,8 @@ type Queue a
     = Queue (List a)
 
 
-initialize : Queue a
-initialize =
+empty : Queue a
+empty =
     Queue []
 
 

@@ -8,7 +8,7 @@ import Queue exposing (Queue)
 
 emptyStack : Stack Int
 emptyStack =
-    Stack.initialize
+    Stack.empty
 
 
 oneElementStack : Stack Int
@@ -23,7 +23,7 @@ twoElementStack =
 
 emptyQueue : Queue Int
 emptyQueue =
-    Queue.initialize
+    Queue.empty
 
 
 oneElementQueue : Queue Int
