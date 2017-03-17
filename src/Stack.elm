@@ -17,9 +17,9 @@ top (Stack stack) =
     List.head stack
 
 
-pop : Stack a -> Stack a
+pop : Stack a -> ( Maybe a, Stack a )
 pop (Stack stack) =
-    Stack (List.drop 1 stack)
+    ( List.head stack, Stack (List.drop 1 stack) )
 
 
 push : a -> Stack a -> Stack a

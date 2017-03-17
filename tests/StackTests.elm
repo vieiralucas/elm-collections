@@ -24,13 +24,13 @@ all =
             \() ->
                 Stack.empty
                     |> Stack.pop
-                    |> Expect.equal Stack.empty
+                    |> Expect.equal ( Nothing, Stack.empty )
         , test "pop removes last pushed element" <|
             \() ->
                 Stack.empty
                     |> Stack.push 1
                     |> Stack.pop
-                    |> Expect.equal Stack.empty
+                    |> Expect.equal ( Just 1, Stack.empty )
         , test "toList of empty gives empty List" <|
             \() ->
                 Stack.empty
