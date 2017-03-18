@@ -24,7 +24,7 @@ type Stack a
 
 {-| Creates an empty Stack.
 
-Stack.empty
+  Stack.empty
 -}
 empty : Stack a
 empty =
@@ -33,10 +33,10 @@ empty =
 
 {-| Gets the top of the Stack.
 
-Stack.empty
-  |> Stack.push 1
-  |> Stack.top
-    -- == Just 1
+  Stack.empty
+    |> Stack.push 1
+    |> Stack.top
+      -- == Just 1
 -}
 top : Stack a -> Maybe a
 top (Stack stack) =
@@ -45,10 +45,10 @@ top (Stack stack) =
 
 {-| Pushes an item into the Stack.
 
-Stack.empty
-  |> Stack.push 1
-  |> Stack.toList
-    -- == [1]
+  Stack.empty
+    |> Stack.push 1
+    |> Stack.toList
+      -- == [1]
 -}
 push : a -> Stack a -> Stack a
 push a (Stack stack) =
@@ -57,10 +57,10 @@ push a (Stack stack) =
 
 {-| Pops an item from the Stack.
 
-Stack.empty
-  |> Stack.push 1
-  |> Stack.pop
-    -- == (Just 1, Stack.empty)
+  Stack.empty
+    |> Stack.push 1
+    |> Stack.pop
+      -- == (Just 1, Stack.empty)
 -}
 pop : Stack a -> ( Maybe a, Stack a )
 pop (Stack stack) =
@@ -69,11 +69,11 @@ pop (Stack stack) =
 
 {-| Converts a Stack into a List
 
-Stack.empty
-  |> Stack.push 1
-  |> Stack.push 2
-  |> Stack.toList
-    -- == [2, 1]
+  Stack.empty
+    |> Stack.push 1
+    |> Stack.push 2
+    |> Stack.toList
+      -- == [2, 1]
 -}
 toList : Stack a -> List a
 toList (Stack stack) =

@@ -24,7 +24,7 @@ type Queue a
 
 {-| Creates an empty Queue.
 
-Queue.empty
+  Queue.empty
 -}
 empty : Queue a
 empty =
@@ -33,10 +33,10 @@ empty =
 
 {-| Gets first item of Queue.
 
-Queue.empty
-  |> Queue.enq 1
-  |> Queue.first
-    -- == Just 1
+  Queue.empty
+    |> Queue.enq 1
+    |> Queue.first
+      -- == Just 1
 -}
 first : Queue a -> Maybe a
 first (Queue queue) =
@@ -45,10 +45,10 @@ first (Queue queue) =
 
 {-| Enqueues an item to the Queue.
 
-Queue.empty
-  |> Queue.enq 1
-  |> Queue.toList
-    -- == [1]
+  Queue.empty
+    |> Queue.enq 1
+    |> Queue.toList
+      -- == [1]
 -}
 enq : a -> Queue a -> Queue a
 enq a (Queue queue) =
@@ -57,10 +57,10 @@ enq a (Queue queue) =
 
 {-| Dequeues an item from the Queue.
 
-Queue.empty
-  |> Queue.enq 1
-  |> Queue.deq
-    -- == (Just 1, Queue.empty)
+  Queue.empty
+    |> Queue.enq 1
+    |> Queue.deq
+      -- == (Just 1, Queue.empty)
 -}
 deq : Queue a -> ( Maybe a, Queue a )
 deq (Queue queue) =
@@ -69,11 +69,11 @@ deq (Queue queue) =
 
 {-| Converts a Queue into a List.
 
-Queue.empty
-  |> Queue.enq 1
-  |> Queue.enq 2
-  |> Queue.toList
-    -- == [1, 2]
+  Queue.empty
+    |> Queue.enq 1
+    |> Queue.enq 2
+    |> Queue.toList
+      -- == [1, 2]
 -}
 toList : Queue a -> List a
 toList (Queue queue) =
