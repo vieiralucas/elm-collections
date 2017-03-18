@@ -24,7 +24,7 @@ type Queue a
 
 {-| Creates an empty Queue.
 
-  Queue.empty
+    Queue.empty
 -}
 empty : Queue a
 empty =
@@ -33,7 +33,7 @@ empty =
 
 {-| Gets first item of Queue.
 
-  Queue.empty
+    Queue.empty
     |> Queue.enq 1
     |> Queue.first
       -- == Just 1
@@ -45,7 +45,7 @@ first (Queue queue) =
 
 {-| Enqueues an item to the Queue.
 
-  Queue.empty
+    Queue.empty
     |> Queue.enq 1
     |> Queue.toList
       -- == [1]
@@ -57,7 +57,7 @@ enq a (Queue queue) =
 
 {-| Dequeues an item from the Queue.
 
-  Queue.empty
+    Queue.empty
     |> Queue.enq 1
     |> Queue.deq
       -- == (Just 1, Queue.empty)
@@ -69,7 +69,7 @@ deq (Queue queue) =
 
 {-| Converts a Queue into a List.
 
-  Queue.empty
+    Queue.empty
     |> Queue.enq 1
     |> Queue.enq 2
     |> Queue.toList

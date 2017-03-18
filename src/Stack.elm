@@ -24,7 +24,7 @@ type Stack a
 
 {-| Creates an empty Stack.
 
-  Stack.empty
+    Stack.empty
 -}
 empty : Stack a
 empty =
@@ -33,7 +33,7 @@ empty =
 
 {-| Gets the top of the Stack.
 
-  Stack.empty
+    Stack.empty
     |> Stack.push 1
     |> Stack.top
       -- == Just 1
@@ -45,7 +45,7 @@ top (Stack stack) =
 
 {-| Pushes an item into the Stack.
 
-  Stack.empty
+    Stack.empty
     |> Stack.push 1
     |> Stack.toList
       -- == [1]
@@ -57,7 +57,7 @@ push a (Stack stack) =
 
 {-| Pops an item from the Stack.
 
-  Stack.empty
+    Stack.empty
     |> Stack.push 1
     |> Stack.pop
       -- == (Just 1, Stack.empty)
@@ -69,7 +69,7 @@ pop (Stack stack) =
 
 {-| Converts a Stack into a List
 
-  Stack.empty
+    Stack.empty
     |> Stack.push 1
     |> Stack.push 2
     |> Stack.toList
