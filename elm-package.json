@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "summary": "A package that implements a bunch of collections",
     "repository": "https://github.com/vieiralucas/elm-collections.git",
     "license": "BSD3",
