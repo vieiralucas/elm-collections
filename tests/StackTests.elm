@@ -43,4 +43,20 @@ all =
                     |> Stack.push 2
                     |> Stack.toList
                     |> Expect.equal [ 2, 1 ]
+        , test "fromList converts list to stack" <|
+            \() ->
+                Stack.fromList [ 1, 2, 3 ]
+                    |> Expect.equal
+                        (Stack.empty
+                            |> Stack.push 1
+                            |> Stack.push 2
+                            |> Stack.push 3
+                        )
+        , test "append appends a list to the stack" <|
+            \() ->
+                Stack.empty
+                    |> Stack.push 1
+                    |> Stack.append [ 2, 3 ]
+                    |> Stack.toList
+                    |> Expect.equal [ 3, 2, 1 ]
         ]

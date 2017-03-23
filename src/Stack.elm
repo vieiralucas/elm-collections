@@ -1,4 +1,4 @@
-module Stack exposing (Stack, empty, top, pop, push, toList)
+module Stack exposing (Stack, empty, top, pop, push, append, toList, fromList)
 
 {-|
 
@@ -8,8 +8,12 @@ module Stack exposing (Stack, empty, top, pop, push, toList)
 @docs top
 # Pushing/Popping
 @docs push, pop
+# Append
+@docs append
 # To List
 @docs toList
+# From List
+@docs fromList
 
 -}
 
@@ -78,3 +82,26 @@ pop (Stack stack) =
 toList : Stack a -> List a
 toList (Stack stack) =
     stack
+
+{-| Appends a List into the Stack.
+    Stack.empty
+    |> Stack.push 1
+    |> Stack.append [2, 3]
+    |> Stack.toList
+      -- == [3, 2, 1]
+-}
+append : List a -> Stack a -> Stack a
+append list (Stack stack) =
+  Stack <| (List.reverse list) ++ stack
+
+
+{-| Converts a List into a Stack
+
+    Stack.fromLista [1, 2]
+    |> Stack.push 3
+    |> Stack.toList
+      -- == [3, 2, 1]
+-}
+fromList : List a -> Stack a
+fromList a =
+    Stack (List.reverse a)
