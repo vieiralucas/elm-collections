@@ -81,6 +81,12 @@ toList (Queue queue) =
 
 {-| Dequeue, call a function with to process, and then enqueue.
 
+    Queue.empty
+    |> Queue.enq 1
+    |> Queue.enq 3
+    |> Queue.requeue increment
+    |> Queue.toList
+    -- == [ 3, 2 ]
 -}
 requeue : (a -> a) -> Queue a -> Queue a
 requeue processor queue =
