@@ -1,4 +1,4 @@
-module Stack exposing (Stack, empty, top, pop, push, append, toList, fromList)
+module Stack exposing (Stack, empty, top, pop, push, append, toList, fromList, restack)
 
 {-|
 
@@ -105,3 +105,19 @@ append list (Stack stack) =
 fromList : List a -> Stack a
 fromList a =
     Stack (List.reverse a)
+
+{-| Pop, call a function with to process, and then Push.
+
+-}
+restack : (a -> a) -> Stack a -> Stack a
+restack processor stack =
+    let
+        ( maybeItem, newStack ) =
+            pop stack
+    in
+        case maybeItem of
+            Just item ->
+                push (processor item) newStack
+
+            Nothing ->
+                newStack

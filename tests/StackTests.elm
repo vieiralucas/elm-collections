@@ -59,4 +59,13 @@ all =
                     |> Stack.append [ 2, 3 ]
                     |> Stack.toList
                     |> Expect.equal [ 3, 2, 1 ]
+        , test "restack of Empty does nothing" <|
+            \() ->
+                Stack.empty
+                    |> Stack.restack increment
+                    |> Expect.equal Stack.empty
         ]
+
+increment: Int -> Int
+increment i = 
+    i + 1
