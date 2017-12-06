@@ -2,7 +2,6 @@ module QueueTests exposing (..)
 
 import Test exposing (..)
 import Expect
-import Stack exposing (Stack)
 import Queue exposing (Queue)
 
 
@@ -50,6 +49,14 @@ all =
                 Queue.empty
                     |> Queue.requeue increment
                     |> Expect.equal Queue.empty
+        , test "requeue dequeues, processes, and then queues" <|
+            \() ->
+                Queue.empty
+                    |> Queue.enq 1
+                    |> Queue.enq 3
+                    |> Queue.requeue increment
+                    |> Queue.toList
+                    |> Expect.equal [ 3, 2 ]
         ]
 
 increment: Int -> Int
