@@ -1,4 +1,4 @@
-module Queue exposing (Queue, empty, first, enq, deq, toList)
+module Queue exposing (Queue, empty, first, enq, deq, toList, requeue)
 
 {-|
 
@@ -78,3 +78,19 @@ deq (Queue queue) =
 toList : Queue a -> List a
 toList (Queue queue) =
     queue
+
+{-| Dequeue, call a function with to process, and then enqueue.
+
+-}
+requeue : (a -> a) -> Queue a -> Queue a
+requeue processor queue =
+    let
+        ( maybeItem, newQueue ) =
+            deq queue
+    in
+        case maybeItem of
+            Just item ->
+                enq (processor item) newQueue
+
+            Nothing ->
+                newQueue

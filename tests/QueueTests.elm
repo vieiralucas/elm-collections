@@ -45,4 +45,13 @@ all =
                     |> Queue.enq 2
                     |> Queue.toList
                     |> Expect.equal [ 1, 2 ]
+        , test "requeue of Empty does nothing" <|
+            \() ->
+                Queue.empty
+                    |> Queue.requeue increment
+                    |> Expect.equal Queue.empty
         ]
+
+increment: Int -> Int
+increment i = 
+    i + 1
