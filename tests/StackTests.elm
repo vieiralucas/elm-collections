@@ -64,6 +64,14 @@ all =
                 Stack.empty
                     |> Stack.restack increment
                     |> Expect.equal Stack.empty
+        , test "restack pop, processes, and then pushes" <|
+            \() ->
+                Stack.empty
+                    |> Stack.push 1
+                    |> Stack.push 3
+                    |> Stack.restack increment
+                    |> Stack.toList
+                    |> Expect.equal [ 4, 1 ]
         ]
 
 increment: Int -> Int
