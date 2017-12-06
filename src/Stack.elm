@@ -108,6 +108,11 @@ fromList a =
 
 {-| Pop, call a function with to process, and then Push.
 
+    |> Stack.push 1
+    |> Stack.push 3
+    |> Stack.restack increment
+    |> Stack.toList
+    -- == [ 4, 1 ]
 -}
 restack : (a -> a) -> Stack a -> Stack a
 restack processor stack =
