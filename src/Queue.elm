@@ -1,4 +1,4 @@
-module Queue exposing (Queue, empty, first, enq, deq, toList, requeue)
+module Queue exposing (Queue, empty, first, enq, deq, toList, requeue, enqMany, enqManyFromFunction)
 
 {-|
 
@@ -100,3 +100,19 @@ requeue processor queue =
 
             Nothing ->
                 newQueue
+
+enqMany : a -> Int -> Queue a -> Queue a
+enqMany item count queue =
+    if count <= 0 then
+        queue
+    else
+        enq item queue
+        |> enqMany item (count - 1)
+
+enqManyFromFunction : (() -> a) -> Int -> Queue a -> Queue a
+enqManyFromFunction creator count queue =
+    if count <= 0 then
+        queue
+    else
+        enq (creator()) queue
+        |> enqManyFromFunction creator (count - 1)
