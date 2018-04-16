@@ -1,6 +1,7 @@
 module StackTests exposing (..)
 
 import Test exposing (..)
+import Fuzz exposing (intRange)
 import Expect
 import Stack exposing (Stack)
 
@@ -72,6 +73,20 @@ all =
                     |> Stack.restack increment
                     |> Stack.toList
                     |> Expect.equal [ 4, 1 ]
+        , fuzz (intRange 0 50) "pushMany enqueus count copies of item" <|
+            \(count) ->
+                Stack.empty
+                    |> Stack.pushMany 0 count 
+                    |> Stack.toList
+                    |> List.length
+                    |> Expect.equal count
+        , fuzz (intRange 0 50) "pushManyFromFunction enqueus calls enqueues result of function count times" <|
+            \(count) ->
+                Stack.empty
+                    |> Stack.pushManyFromFunction (\() -> 0) count 
+                    |> Stack.toList
+                    |> List.length
+                    |> Expect.equal count
         ]
 
 increment: Int -> Int

@@ -1,4 +1,4 @@
-module Stack exposing (Stack, empty, top, pop, push, append, toList, fromList, restack)
+module Stack exposing (Stack, empty, top, pop, push, append, toList, fromList, restack, pushMany, pushManyFromFunction)
 
 {-|
 
@@ -7,7 +7,7 @@ module Stack exposing (Stack, empty, top, pop, push, append, toList, fromList, r
 # Getting top
 @docs top
 # Pushing/Popping
-@docs push, pop
+@docs push, pop, pushMany, pushManyFromFunction, restack
 # Append
 @docs append
 # To List
@@ -108,6 +108,7 @@ fromList a =
 
 {-| Pop, call a function with to process, and then Push.
 
+    Stack.empty
     |> Stack.push 1
     |> Stack.push 3
     |> Stack.restack increment
@@ -126,3 +127,33 @@ restack processor stack =
 
             Nothing ->
                 newStack
+
+{-| Push count copies of the same item
+
+    Stack.empty
+    |> Stack.pushMany item 3
+    |> Stack.toList
+    -- == [ item, item, item ]
+-}
+pushMany : a -> Int -> Stack a -> Stack a
+pushMany item count stack =
+    if count <= 0 then
+        stack
+    else
+        push item stack
+        |> pushMany item (count - 1)
+
+{-| Call passed function count times and push each result
+
+    Stack.empty
+    |> Stack.pushMany (\() -> item) 3
+    |> Stack.toList
+    -- == [ item, item, item ]
+-}
+pushManyFromFunction : (() -> a) -> Int -> Stack a -> Stack a
+pushManyFromFunction creator count stack =
+    if count <= 0 then
+        stack
+    else
+        push (creator()) stack
+        |> pushManyFromFunction creator (count - 1)
