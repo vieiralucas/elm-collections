@@ -7,7 +7,7 @@ module Queue exposing (Queue, empty, first, enq, deq, toList, requeue, enqMany, 
 # Getting first
 @docs first
 # Enqueuing/Dequeuing
-@docs enq, deq
+@docs enq, deq, requeue, enqMany, enqManyFromFunction
 # To List
 @docs toList
 
@@ -101,6 +101,13 @@ requeue processor queue =
             Nothing ->
                 newQueue
 
+{-| Enqueue count copies of the same item
+
+    Queue.empty
+    |> Queue.pushMany item 3
+    |> Queue.toList
+    -- == [ item, item, item ]
+-}
 enqMany : a -> Int -> Queue a -> Queue a
 enqMany item count queue =
     if count <= 0 then
@@ -109,6 +116,13 @@ enqMany item count queue =
         enq item queue
         |> enqMany item (count - 1)
 
+{-| Call passed function count times and enqueue each result
+
+    Queue.empty
+    |> Queue.pushMany (\() -> item) 3
+    |> Queue.toList
+    -- == [ item, item, item ]
+-}
 enqManyFromFunction : (() -> a) -> Int -> Queue a -> Queue a
 enqManyFromFunction creator count queue =
     if count <= 0 then

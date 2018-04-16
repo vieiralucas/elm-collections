@@ -58,7 +58,7 @@ all =
                     |> Queue.requeue increment
                     |> Queue.toList
                     |> Expect.equal [ 3, 2 ]
-        , fuzz (intRange 0 50) "enqCopies enqueus count copies of item" <|
+        , fuzz (intRange 0 50) "enqMany enqueus count copies of item" <|
             \(count) ->
                 Queue.empty
                     |> Queue.enqMany 0 count 
