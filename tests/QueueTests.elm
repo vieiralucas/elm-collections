@@ -1,8 +1,8 @@
 module QueueTests exposing (..)
 
 import Test exposing (..)
+import Fuzz exposing (intRange)
 import Expect
-import Stack exposing (Stack)
 import Queue exposing (Queue)
 
 
@@ -45,4 +45,35 @@ all =
                     |> Queue.enq 2
                     |> Queue.toList
                     |> Expect.equal [ 1, 2 ]
+        , test "requeue of Empty does nothing" <|
+            \() ->
+                Queue.empty
+                    |> Queue.requeue increment
+                    |> Expect.equal Queue.empty
+        , test "requeue dequeues, processes, and then queues" <|
+            \() ->
+                Queue.empty
+                    |> Queue.enq 1
+                    |> Queue.enq 3
+                    |> Queue.requeue increment
+                    |> Queue.toList
+                    |> Expect.equal [ 3, 2 ]
+        , fuzz (intRange 0 50) "enqMany enqueus count copies of item" <|
+            \(count) ->
+                Queue.empty
+                    |> Queue.enqMany 0 count 
+                    |> Queue.toList
+                    |> List.length
+                    |> Expect.equal count
+        , fuzz (intRange 0 50) "enqManyFromFunction enqueus calls enqueues result of function count times" <|
+            \(count) ->
+                Queue.empty
+                    |> Queue.enqManyFromFunction (\() -> 0) count 
+                    |> Queue.toList
+                    |> List.length
+                    |> Expect.equal count
         ]
+
+increment: Int -> Int
+increment i = 
+    i + 1

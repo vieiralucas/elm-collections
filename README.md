@@ -1,7 +1,7 @@
-This library provides a bunch of well know data structure for elm
+This library provides Queue and Stack implementations
 
 ```bash
-elm-package install vieiralucas/elm-collections
+elm-package install ceddlyburge/elm-collections
 ```
 
 ## Stack
@@ -10,6 +10,10 @@ elm-package install vieiralucas/elm-collections
 empty : Stack a
 
 push : a -> Stack a -> Stack a
+
+pushMany : a -> Int -> Stack a -> Stack a
+
+pushManyFromFunction : (() -> a) -> Int -> Stack a -> Stack a
 
 top : Stack a -> Maybe a
 
@@ -41,6 +45,10 @@ main =
 empty : Queue a
 
 enq : a -> Queue a -> Queue a
+
+enqMany : a -> Int -> Queue a -> Queue a
+
+enqManyFromFunction : (() -> a) -> Int -> Queue a -> Queue a
 
 first : Queue a -> Maybe a
 
